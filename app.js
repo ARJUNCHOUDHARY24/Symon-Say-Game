@@ -8,17 +8,22 @@ let level = 0;
 
 let h2 = document.querySelector("h2");
 
-document.addEventListener("keypress", function () {
+// 👇 keyboard + mobile dono ke liye start
+document.addEventListener("keypress", startGame);
+document.addEventListener("click", startGame);
+
+function startGame() {
   if (!started) {
     started = true;
     levelUp();
   }
-});
+}
 
 function gameflash(btn) {
-  btn.classList.add("flash");
+  // yaha "flash" class ki jagah "btnflash" use karo (CSS ke hisaab se)
+  btn.classList.add("btnflash");
   setTimeout(function () {
-    btn.classList.remove("flash");
+    btn.classList.remove("btnflash");
   }, 250);
 }
 
@@ -50,7 +55,7 @@ function checkAnss(idx) {
       setTimeout(levelUp, 1000);
     }
   } else {
-    h2.innerHTML = `Game Over! your score was <b> ${level}</b> <br> Press Any Key to start.`;
+    h2.innerHTML = `Game Over! your score was <b> ${level}</b> <br> Tap anywhere or press any key to restart.`;
     document.body.style.backgroundColor = "red";
     setTimeout(() => {
       document.body.style.backgroundColor = "";
